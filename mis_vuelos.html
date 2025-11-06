@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mis vuelos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="overflow-x-hidden">
+    <header class="glassmorphism-nav sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">Mis Vuelos</h1>
+            <a class="neumorphic-button px-5 py-2 font-semibold" href="index.html">← Volver</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section class="relative overflow-hidden rounded-2xl neumorphic-panel p-0 mb-10 reveal">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2070&auto=format&fit=crop" alt="Viajero viendo un mapa" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            </div>
+            <div class="relative px-8 py-16 text-center">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">Historial de Compras</h2>
+                <p class="text-white/90 mt-2 max-w-2xl mx-auto drop-shadow-md">Aquí encontrarás todas las reservaciones asociadas a tu cuenta.</p>
+            </div>
+        </section>
+        
+        <div id="list" class="reveal"></div>
+    </main>
+    
+    <script type="module" src="mis_vuelos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function reveal() {
+                document.querySelectorAll(".reveal").forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                        el.classList.add("active");
+                    }
+                });
+            }
+            window.addEventListener("scroll", reveal);
+            reveal();
+        });
+    </script>
+</body>
+</html>

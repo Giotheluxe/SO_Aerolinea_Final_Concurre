@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agencia de Vuelos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="glassmorphism-nav sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">
+                Agencia de <span class="text-blue-600">Vuelos</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="#" id="navLogin" class="neumorphic-button px-5 py-2 font-semibold text-blue-600">Iniciar Sesión</a>
+                <a href="#" id="navSignup" class="bg-blue-600 text-white font-bold px-5 py-2 rounded-xl shadow-lg hover:bg-blue-700 transition-colors">Crear Cuenta</a>
+                <a id="navMisVuelos" href="mis_vuelos.html" class="neumorphic-button px-5 py-2 font-semibold text-blue-600" style="display: none;">Mis vuelos</a>
+                <a id="navLogout" href="#" class="neumorphic-button px-5 py-2 font-semibold text-red-600" style="display: none;">Cerrar sesión</a>
+            
+            <!-- Mobile nav -->
+            <div class="flex md:hidden items-center space-x-2">
+                <a href="#" id="mobileNavLogin" class="neumorphic-button px-4 py-2 font-semibold text-blue-600">Iniciar</a>
+                <a href="#" id="mobileNavSignup" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-semibold shadow-lg">Crear</a>
+                <a id="mobileNavMisVuelos" href="mis_vuelos.html" class="neumorphic-button px-4 py-2 font-semibold text-blue-600" style="display:none;">Mis vuelos</a>
+                <a id="mobileNavLogout" href="#" class="neumorphic-button px-4 py-2 font-semibold text-red-600" style="display:none;">Salir</a>
+            </div>
+
+</div>
+        </nav>
+    </header>
+
+    <!-- Hero Section & Search Bar -->
+    <main class="relative flex flex-col items-center justify-center pt-10 pb-12 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-30" alt="Vista desde la ventana de un avión">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#eef1f5] via-[#eef1f5] to-transparent"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight mb-12 fade-in-up">
+                Encuentra y Gestiona tu Vuelo
+            </h1>
+
+            <div class="neumorphic-panel p-6 max-w-5xl mx-auto fade-in-up" style="animation-delay: 0.4s;">
+                <div class="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
+                    <input type="search" id="q" placeholder="Busca por código, origen, terminal o puerta..." class="md:col-span-4 p-3 rounded-xl neumorphic-input text-gray-700">
+                    <button id="btnSearch" class="md:col-span-1 w-full bg-blue-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-blue-700 transition-colors">Buscar</button>
+                    <button id="btnClear" class="md:col-span-1 w-full neumorphic-button font-semibold text-gray-600 py-3">Limpiar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Flights List -->
+    <section class="container mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-10 reveal">Vuelos Disponibles</h2>
+        <div id="flights" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal"></div>
+    </section>
+
+
+    <footer class="text-center py-8 text-gray-500">
+        <p>&copy; 2025 Agencia de Vuelos. Todos los derechos reservados para Gio.</p>
+    </footer>
+
+    <!-- Auth Modal -->
+    <dialog id="authModal">
+      <form method="dialog" class="authform" id="authForm">
+        <h3 id="authTitle" class="text-2xl font-bold mb-4">Iniciar sesión</h3>
+        <div class="space-y-4">
+            <label class="block">
+                <span class="text-gray-700">Email</span>
+                <input class="w-full mt-1 neumorphic-input p-3 rounded-xl" type="email" id="authEmail" required>
+            </label>
+            <div id="nameBox" style="display:none">
+                <label class="block">
+                    <span class="text-gray-700">Nombre</span>
+                    <input class="w-full mt-1 neumorphic-input p-3 rounded-xl" type="text" id="authName" required>
+                </label>
+            </div>
+            <label class="block">
+                <span class="text-gray-700">Contraseña</span>
+                <input class="w-full mt-1 neumorphic-input p-3 rounded-xl" type="password" id="authPass" minlength="8" required>
+            </label>
+            <div id="passConfirmBox" style="display:none">
+                <label class="block">
+                    <span class="text-gray-700">Confirmar Contraseña</span>
+                    <input class="w-full mt-1 neumorphic-input p-3 rounded-xl" type="password" id="authPass2" minlength="8">
+                </label>
+            </div>
+        </div>
+        <menu class="flex justify-end gap-4 mt-6">
+          <button class="neumorphic-button py-2 px-5 font-semibold" type="button" value="cancel">Cancelar</button>
+          <button class="bg-blue-600 text-white font-bold py-2 px-5 rounded-xl shadow-lg hover:bg-blue-700 transition-colors" id="authSubmit">Continuar</button>
+        </menu>
+        <p class="text-sm mt-4 text-gray-500" id="authSwitch">¿No tienes cuenta? <a href="#" class="text-blue-600 hover:underline">Crear una</a></p>
+      </form>
+    </dialog>
+
+    <script type="module" src="index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function reveal() {
+                document.querySelectorAll(".reveal").forEach(el => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = el.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) {
+                        el.classList.add("active");
+                    }
+                });
+            }
+            window.addEventListener("scroll", reveal);
+            reveal();
+        });
+    </script>
+
+</body>
+</html>
